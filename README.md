@@ -1,4 +1,4 @@
-# TO DO LIST : 
+# TO-DO LIST App : 
 
 This is a simple To-Do List that takes in an input from the user and storing it onto items section. 
 
