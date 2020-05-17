@@ -1,33 +1,9 @@
-// create a delete button and append item on each lists.
-/*
-var myNodeList = document.getElementsByTagName("LI");
-var i; 
-for (i = 0; i < myNodeList.length; i++) {
-    var span = document.createElement("SPAN"); 
-    var btnD = document.createTextNode("\u00D7"); 
-    span.className = "delete"; 
-    span.appendChild(btnD);
-    myNodeList[i].appendChild(span); 
-}
-*/
-
-// Click on a close button to hide the current list item
-/*
-var close = document.getElementsByClassName("delete");
-var i;
-for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-        var div = this.parentElement;
-        div.style.display = "none";
-    }
-}
-*/
-
 // add items on the list. 
 function newItem() {
     var li = document.createElement("li"); // variable for new element "li". 
     var inputValue = document.getElementById("itemInput").value; // gets the value of the text box. 
     var t = document.createTextNode(inputValue); // creates a new node for the new item.
+    li.className = "item"
     li.appendChild(t); // new item added on the bottom of the list.
 
     if(inputValue === '') {
@@ -45,7 +21,7 @@ function newItem() {
     li.appendChild(span); 
 
     // deletes the item off the lists. 
-    var close = document.getElementsByClassName("delete");
+    var close = document.getElementsByClassName("delete"); //get the class name of SPAN. 
     var i;
     for (i = 0; i < close.length; i++) {
         close[i].onclick = function() {
@@ -53,16 +29,31 @@ function newItem() {
         remove.style.display = "none";
         }
     }
+
+    // This removes an item off the Item section and move it to the completed section.
+    var item = document.getElementsByClassName("item"); 
+    for (var i = 0; i < item.length; i++) {
+        var j = document.createElement("li"); 
+        item[i].onclick = function() {
+            var l = document.createElement("li");
+            var n = document.createTextNode(item); 
+            l.appendChild(n);
+            j.appendChild(l); 
+        }
+        console.log(document.getElementById("cItems").appendChild(j));
+    } 
 }
 
-// completed items added on complete section. 
-document.getElementsByTagName('LI').onclick = function() {
-    checkItem()
-}; 
 
-function checkItem() {
-    var l = document.createElement("li"); // variable for new element "li". 
-    var v = document.getElementById("itemInput").value; // gets the value of the text box. 
-    var tl = document.createTextNode(v); // creates a new node for the new item.
-    l.appendChild(tl); 
+
+/*
+document.getElementsByTagName("UL").addEventListener("click", checkItem()); 
+function checkItem(item) {
+    if(item.target.tagName === "LI") {
+        var i = document.getElementsByTagName("LI");
+        var n = document.createTextNode(i); 
+        done.appendChild(n);
+    }
+    console.log(document.getElementById("cItems").appendChild(item));
 }
+ */
